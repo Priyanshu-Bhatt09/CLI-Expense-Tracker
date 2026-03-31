@@ -1,3 +1,10 @@
 {
-    "expenses": []
+    "expenses": [
+        {
+            "id": 1,
+            "description": "clothes",
+            "amount": 2000,
+            "date": "2026-03-31"
+        }
+    ]
 }
