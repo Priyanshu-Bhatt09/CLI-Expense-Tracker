@@ -56,6 +56,36 @@ def delete_expense(expenses):
         
     print("Expense not found")
 
+def summary(expenses):
+
+    if not expenses:
+        print("Expense not found")
+        return
+
+    total = 0
+    for expense in expenses:
+        total += expense["amount"]
+    
+    print(f"\n Total expense: Rs{total}")
+
+def summary_month(expenses):
+    if not expenses:
+        print("Expense not found")
+        return
+
+    year = input("Enter year (YYYY): ")
+    month = input("Enter month (MM): ")
+
+    total = 0
+    for expense in expenses:
+        expense_date = expense["date"]
+        exp_year, exp_month, _ = expense_date.split("-")
+
+        if exp_year == year and exp_month == month:
+            total += expense["amount"]
+
+    print(f"\n Total Expense for {year}-{month}: Rs.{total}")
+
 def main():
     expenses = load_expenses()
 
@@ -65,7 +95,9 @@ def main():
         print("2. View expense")
         print("3. Update expense")
         print("4. Delete expense")
-        print("5. Exit")
+        print("5. Summary of expense")
+        print("6. Summary of expense for specific month")
+        print("7. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -78,6 +110,10 @@ def main():
         elif choice == "4":
             delete_expense(expenses)
         elif choice == "5":
+            summary(expenses)
+        elif choice == "6":
+            summary_month(expenses)
+        elif choice == "7":
             break
         else:
             print("Invalid choice")
